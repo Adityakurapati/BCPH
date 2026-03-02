@@ -1,6 +1,6 @@
-import { useState, useCallback } from 'react';
-import { ref, get } from 'firebase/database';
-import { database } from '@/lib/firebase';
+import { useState } from "react";
+import { get, ref } from "firebase/database";
+import { database } from "@/lib/firebase"; // adjust path if needed
 
 export interface Voter {
   sr_no: number;
@@ -14,97 +14,65 @@ export const useVoterSearch = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const searchVoter = useCallback(async (searchQuery: string): Promise<Voter[] | null> => {
+  const searchVoter = async (searchTerm: string): Promise<Voter[] | null> => {
+    const cleaned = searchTerm.trim();
+    if (!cleaned) return null;
+
     setLoading(true);
     setError(null);
 
     try {
-      const query = searchQuery.trim();
-      if (!query) {
-        setError('Please enter a search term');
-        setLoading(false);
-        return null;
-      }
+      // 🔎 Detect if search is numeric (Serial Number)
+      const isNumberSearch = /^\d+$/.test(cleaned);
 
-      // Try to parse as sr_no (number)
-      const srNoMatch = parseInt(query, 10);
-      let srNos: number[] = [];
+      // ============================
+      // 🔥 SERIAL NUMBER SEARCH (FAST O(1))
+      // ============================
+      if (isNumberSearch) {
+        const voterRef = ref(database, `voters/${cleaned}`);
+        const snapshot = await get(voterRef);
 
-      if (!isNaN(srNoMatch)) {
-        // Direct sr_no search
-        srNos = [srNoMatch];
-      } else {
-        // Name search - use indexes
-        const indexesRef = ref(database, 'indexes');
-        const indexSnapshot = await get(indexesRef);
-
-        if (!indexSnapshot.exists()) {
-          setError('No voters database found');
-          setLoading(false);
-          return null;
-        }
-
-        const indexes = indexSnapshot.val();
-        const upperQuery = query.toUpperCase();
-
-        // Search for exact match in indexes
-        const matchedEntry = Object.entries(indexes).find(
-          ([name, _]) => (name as string).toUpperCase() === upperQuery
-        );
-
-        if (matchedEntry) {
-          const srNoMap = matchedEntry[1] as Record<string, boolean>;
-          // Extract all sr_no keys from the matched entry
-          srNos = Object.keys(srNoMap).map(key => parseInt(key, 10));
+        if (snapshot.exists()) {
+          return [snapshot.val()];
         } else {
-          setError('Voter not found');
-          setLoading(false);
-          return null;
+          return [];
         }
       }
 
-      // Now fetch all voters by sr_nos
-      if (srNos.length > 0) {
-        const voters: Voter[] = [];
-        const votersRef = ref(database, 'voters');
-        const votersSnapshot = await get(votersRef);
+      // ============================
+      // 🔥 NAME SEARCH USING INDEX
+      // ============================
+      const upperName = cleaned.toUpperCase();
 
-        if (!votersSnapshot.exists()) {
-          setError('Voters database not found');
-          setLoading(false);
-          return null;
-        }
+      const indexRef = ref(database, `indexes/${upperName}`);
+      const indexSnap = await get(indexRef);
 
-        const allVoters = votersSnapshot.val();
-
-        // Fetch each voter by sr_no
-        for (const srNo of srNos) {
-          if (allVoters[srNo]) {
-            voters.push(allVoters[srNo] as Voter);
-          }
-        }
-
-        if (voters.length === 0) {
-          setError('Voter record not found');
-          setLoading(false);
-          return null;
-        }
-
-        setLoading(false);
-        return voters;
+      if (!indexSnap.exists()) {
+        return [];
       }
 
-      setError('Invalid search query');
-      setLoading(false);
-      return null;
+      const voterId = indexSnap.val();
+
+      const voterRef = ref(database, `voters/${voterId}`);
+      const voterSnap = await get(voterRef);
+
+      if (voterSnap.exists()) {
+        return [voterSnap.val()];
+      }
+
+      return [];
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'An error occurred';
-      setError(`Search failed: ${errorMessage}`);
-      console.error('[v0] Voter search error:', err);
-      setLoading(false);
+      console.error("Search Error:", err);
+      setError("Something went wrong while searching.");
       return null;
+    } finally {
+      setLoading(false);
     }
-  }, []);
+  };
 
-  return { searchVoter, loading, error };
+  return {
+    searchVoter,
+    loading,
+    error,
+  };
 };

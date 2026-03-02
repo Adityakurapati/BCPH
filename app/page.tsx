@@ -96,7 +96,7 @@ export default function Home() {
       </div>
 
       {selectedVoter && (
-  <div className="fixed min-h-screen min-w-screen z-50 flex items-center justify-center bg-blue-900/80 backdrop-blur-sm px-4">
+  <div className="fixed top-0 min-h-screen min-w-screen z-50 flex items-center justify-center bg-blue-900/80 backdrop-blur-sm px-4">
 
     {/* Modal Container */}
     <div className="relative w-full max-w-4xl">
