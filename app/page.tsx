@@ -138,7 +138,7 @@ export default function Home() {
           {/* LEFT SIDE */}
           <div className="flex items-center gap-4">
             {/* Photo */}
-            <div className="relative w-32 h-34 rounded-lg overflow-hidden border-2 border-yellow-400 shadow-lg">
+            <div className="relative w-34 h-34 rounded-lg overflow-hidden border-2 border-yellow-400 shadow-lg">
               <Image
                 src="/priya_lehga.jpeg"
                 alt="Vaibhav Jain"
