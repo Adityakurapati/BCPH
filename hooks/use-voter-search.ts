@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { get, ref } from "firebase/database";
-import { database } from "@/lib/firebase"; // adjust path if needed
+import { database } from "@/lib/firebase";
 
 export interface Voter {
   sr_no: number;
@@ -22,45 +22,33 @@ export const useVoterSearch = () => {
     setError(null);
 
     try {
-      // 🔎 Detect if search is numeric (Serial Number)
       const isNumberSearch = /^\d+$/.test(cleaned);
 
-      // ============================
-      // 🔥 SERIAL NUMBER SEARCH (FAST O(1))
-      // ============================
+      // 🔹 SERIAL NUMBER SEARCH (fast)
       if (isNumberSearch) {
-        const voterRef = ref(database, `voters/${cleaned}`);
-        const snapshot = await get(voterRef);
-
-        if (snapshot.exists()) {
-          return [snapshot.val()];
-        } else {
-          return [];
-        }
-      }
-
-      // ============================
-      // 🔥 NAME SEARCH USING INDEX
-      // ============================
-      const upperName = cleaned.toUpperCase();
-
-      const indexRef = ref(database, `indexes/${upperName}`);
-      const indexSnap = await get(indexRef);
-
-      if (!indexSnap.exists()) {
+        const snapshot = await get(ref(database, `voters/${cleaned}`));
+        if (snapshot.exists()) return [snapshot.val()];
         return [];
       }
 
-      const voterId = indexSnap.val();
+      // 🔹 NAME SEARCH (may map to multiple IDs)
+      const upperName = cleaned.toUpperCase();
+      const indexSnap = await get(ref(database, `indexes/${upperName}`));
 
-      const voterRef = ref(database, `voters/${voterId}`);
-      const voterSnap = await get(voterRef);
+      if (!indexSnap.exists()) return [];
 
-      if (voterSnap.exists()) {
-        return [voterSnap.val()];
+      const idMap = indexSnap.val(); // object like { "8": true, "14030": true }
+      const voterIds = Object.keys(idMap);
+
+      // Fetch all voters by ID
+      const voters: Voter[] = [];
+
+      for (const id of voterIds) {
+        const voterSnap = await get(ref(database, `voters/${id}`));
+        if (voterSnap.exists()) voters.push(voterSnap.val());
       }
 
-      return [];
+      return voters;
     } catch (err) {
       console.error("Search Error:", err);
       setError("Something went wrong while searching.");
@@ -70,9 +58,5 @@ export const useVoterSearch = () => {
     }
   };
 
-  return {
-    searchVoter,
-    loading,
-    error,
-  };
+  return { searchVoter, loading, error };
 };
