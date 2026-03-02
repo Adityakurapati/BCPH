@@ -82,78 +82,81 @@ export function VotingSlip({ voter }: VotingSlipProps) {
             </div>
 
             <div className="w-28 h-28">
-  <svg viewBox="0 0 200 200" className="w-full h-full">
+              <svg viewBox="0 0 200 200" className="w-full h-full">
 
-    {/* Outer Circle */}
-    <circle
-      cx="100"
-      cy="100"
-      r="90"
-      stroke="#1e3a8a"
-      strokeWidth="6"
-      fill="none"
-    />
+                {/* Outer Circle */}
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="90"
+                  stroke="#1e3a8a"
+                  strokeWidth="6"
+                  fill="none"
+                />
 
-    {/* Inner Circle */}
-    <circle
-      cx="100"
-      cy="100"
-      r="70"
-      stroke="#1e3a8a"
-      strokeWidth="2"
-      fill="none"
-    />
+                {/* Inner Circle */}
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="60"
+                  stroke="#1e3a8a"
+                  strokeWidth="2"
+                  fill="none"
+                />
 
-    {/* Top Arc */}
-    <path
-      id="topArc"
-      d="M 30 100 A 80 80 0 0 1 170 100"
-      fill="none"
-    />
+                {/* Top Text Path */}
+                <path
+                  id="topArc"
+                  d="M 30 100 A 70 70 0 0 1 170 100"
+                  fill="none"
+                />
 
-    <text
-      fontSize="16"
-      fontWeight="bold"
-      fill="#1e3a8a"
-      letterSpacing="3"
-    >
-      <textPath href="#topArc" startOffset="50%" textAnchor="middle">
-        BALLOT
-      </textPath>
-    </text>
+                <text
+                  fontSize="18"
+                  fontWeight="bold"
+                  fill="#1e3a8a"
+                  letterSpacing="3"
+                >
+                  <textPath href="#topArc" startOffset="50%" textAnchor="middle">
+                    BALLOT
+                  </textPath>
+                </text>
 
-    {/* Bottom Arc (FIXED direction) */}
-    <path
-      id="bottomArc"
-      d="M 30 100 A 80 80 0 0 0 170 100"
-      fill="none"
-    />
+                {/* Bottom Text Path (between circles) */}
+<path
+  id="bottomArc"
+  d="M 20 100 A 80 80 0 0 0 180 100"
+  fill="none"
+/>
 
-    <text
-      fontSize="16"
-      fontWeight="bold"
-      fill="#1e3a8a"
-      letterSpacing="3"
-    >
-      <textPath href="#bottomArc" startOffset="50%" textAnchor="middle">
-        NUMBER
-      </textPath>
-    </text>
+<text
+  fontSize="18"
+  fontWeight="bold"
+  fill="#1e3a8a"
+  letterSpacing="3"
+>
+  <textPath
+    href="#bottomArc"
+    startOffset="50%"
+    textAnchor="middle"
+  >
+    NUMBER
+  </textPath>
+</text>
+                {/* Center Number */}
+                <text
+                  x="100"
+                  y="115"
+                  textAnchor="middle"
+                  fontSize="50"
+                  fontWeight="bold"
+                  fill="#dc2626"
+                >
+                  {FIXED_BALLOT_NUMBER}
+                </text>
 
-    {/* Center Number */}
-    <text
-      x="100"
-      y="115"
-      textAnchor="middle"
-      fontSize="50"
-      fontWeight="bold"
-      fill="#dc2626"
-    >
-      {FIXED_BALLOT_NUMBER}
-    </text>
-
-  </svg>
-</div>
+              </svg>
+            </div>
 
           </div>
         </div>
@@ -178,49 +181,7 @@ export function VotingSlip({ voter }: VotingSlipProps) {
         </div>
       </div>
      
-      <div className="flex justify-center gap-10 mt-6">
-
-  {/* WhatsApp */}
-  <div className="flex flex-col items-center gap-1">
-    <button
-      onClick={handleWhatsAppShare}
-      className="w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 text-white flex items-center justify-center shadow-md transition transform hover:scale-105"
-    >
-      <MessageCircle size={22} />
-    </button>
-    <span className="text-xs font-medium text-white">
-      WhatsApp
-    </span>
-  </div>
-
-  {/* Share */}
-  <div className="flex flex-col items-center gap-1">
-    <button
-      onClick={handleShare}
-      className="w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-md transition transform hover:scale-105"
-    >
-      <Share2 size={22} />
-    </button>
-    <span className="text-xs font-medium text-white">
-      Share
-    </span>
-  </div>
-
-  {/* Download */}
-  <div className="flex flex-col items-center gap-1">
-    <button
-      onClick={handleDownload}
-      className="w-14 h-14 rounded-full bg-gray-800 hover:bg-black text-white flex items-center justify-center shadow-md transition transform hover:scale-105"
-    >
-      <Download size={22} />
-    </button>
-    <span className="text-xs font-medium text-white">
-      Download
-    </span>
-  </div>
-
-</div>
-
+      
 
     </div>
   );
