@@ -61,7 +61,7 @@ export default function Home() {
         </h2>
 
         <form onSubmit={handleSearch} className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+
 
           <input
             type="text"
@@ -69,7 +69,7 @@ export default function Home() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             disabled={loading}
-            className="w-full pl-12 pr-24 py-3 text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full pl-4 pr-24 py-3 text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           />
 
           <button
@@ -80,7 +80,9 @@ export default function Home() {
             {loading ? (
               <Loader2 className="w-5 h-5 animate-spin" />
             ) : (
-              'Search'
+             <div className="flex items-center gap-2">
+              <Search className="w-4 h-4" />
+             </div>
             )}
           </button>
         </form>
@@ -93,19 +95,26 @@ export default function Home() {
         )}
       </div>
 
-      {/* 🔹 VOTING SLIP */}
       {selectedVoter && (
-        <div className="w-full max-w-4xl relative">
-          <button
-            onClick={handleCloseSlip}
-            className="absolute -top-4 right-0 bg-white shadow rounded-full p-2 hover:bg-gray-100 z-10"
-          >
-            <X className="w-5 h-5 text-gray-600" />
-          </button>
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-blue-900/80 backdrop-blur-sm px-4">
 
-          <VotingSlip voter={selectedVoter} />
-        </div>
-      )}
+    {/* Modal Container */}
+    <div className="relative w-full max-w-4xl">
+
+      {/* Close Button (keep existing style) */}
+      <button
+        onClick={handleCloseSlip}
+        className="absolute -top-5 right-0 bg-white shadow-lg rounded-full p-2 hover:bg-gray-100 z-10"
+      >
+        <X className="w-5 h-5 text-gray-700" />
+      </button>
+
+      {/* Voting Slip */}
+      <VotingSlip voter={selectedVoter} />
+
+    </div>
+  </div>
+)}
 
       {/* 🔹 MULTIPLE RESULTS MODAL */}
       {showResults && searchResults && (
@@ -128,7 +137,7 @@ export default function Home() {
 
           {/* LEFT SIDE */}
           <div className="flex items-center gap-4">
-             {/* Photo */}
+            {/* Photo */}
             <div className="relative w-20 h-24 rounded-lg overflow-hidden border-2 border-yellow-400 shadow-lg">
               <Image
                 src="/priya_lehga.jpeg"
