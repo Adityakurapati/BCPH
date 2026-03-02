@@ -20,15 +20,15 @@ export function VotingSlip({ voter }: VotingSlipProps) {
           <div className="col-span-12">
             <div className="mb-4">
               <h1 className="text-4xl font-bold text-center text-foreground tracking-tight">
-                {FIXED_CANDIDATE_NAME}
+                {voter.name.toUpperCase()}
               </h1>
               <div className="h-1 bg-gradient-to-r from-transparent via-primary to-transparent mt-2"></div>
             </div>
 
             <div className="space-y-2 text-sm">
               <div>
-                <span className="font-bold text-foreground">Contact:</span>
-                <span className="ml-2 text-foreground">{voter.name}</span>
+                <span className="font-bold text-foreground">Place Of Voting :</span>
+                <span className="ml-2 text-foreground">{voter.place_of_voting}</span>
               </div>
               <div>
                 <span className="font-bold text-foreground">Address:</span>
