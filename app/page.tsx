@@ -6,7 +6,6 @@ import {
   Loader2,
   AlertCircle,
   X,
-  CheckCircle2,
   Phone,
   MapPin,
   Calendar,
@@ -15,6 +14,7 @@ import {
 import { useVoterSearch, Voter } from '@/hooks/use-voter-search';
 import { VotingSlip } from '@/components/voting-slip';
 import { VoterResults } from '@/components/voter-results';
+import Image from 'next/image';
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -54,9 +54,8 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gray-50 flex flex-col items-center px-4 py-4 space-y-6">
 
-{/* 🔹 SEARCH SECTION */}
+      {/* 🔹 SEARCH SECTION */}
       <div className="w-full max-w-4xl bg-white rounded-xl shadow-md p-6">
-
         <h2 className="text-lg font-semibold text-center mb-4">
           Voting Slip Finder
         </h2>
@@ -120,32 +119,51 @@ export default function Home() {
           }}
         />
       )}
-      {/* 🔹 CAMPAIGN HERO (Now inside page.tsx) */}
-      <div className="w-full max-w-4xl bg-white rounded-xl shadow-md p-6 space-y-5">
 
-        <div className="text-center">
-          <h1 className="text-2xl font-bold">PRIYA LEGHA</h1>
-          <p className="text-sm text-gray-600">Advocate</p>
-          <p className="text-sm font-semibold">
-            Member – Bar Council Punjab & Haryana
-          </p>
-        </div>
+      {/* 🔹 CAMPAIGN HERO SECTION */}
+      <div className="w-full max-w-4xl bg-white rounded-xl shadow-md p-6 space-y-6">
 
-        <div className="grid grid-cols-3 gap-3 text-center">
-          {['Vote', 'Support', 'Elect'].map((item) => (
-            <div key={item} className="border rounded-lg py-3">
-              <CheckCircle2 className="w-5 h-5 mx-auto mb-1 text-green-600" />
-              <span className="text-sm font-semibold">{item}</span>
+        {/* 🔹 Image + Name + Ballot */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+
+          {/* LEFT SIDE */}
+          <div className="flex items-center gap-4">
+             {/* Photo */}
+            <div className="relative w-20 h-24 rounded-lg overflow-hidden border-2 border-yellow-400 shadow-lg">
+              <Image
+                src="/priya_lehga.jpeg"
+                alt="Vaibhav Jain"
+                fill
+                className="object-auto"
+              />
+
             </div>
-          ))}
+
+            <div>
+              <h1 className="text-2xl font-bold">PRIYA LEGHA</h1>
+              <p className="text-sm text-gray-600">Advocate</p>
+              <p className="text-sm font-semibold">
+                Member – Bar Council Punjab & Haryana
+              </p>
+            </div>
+          </div>
+
+          {/* RIGHT SIDE BALLOT BOX */}
+          <div className="bg-primary text-white rounded-lg px-6 py-4 text-center">
+            <p className="text-sm">1st / Best Preference</p>
+            <p className="text-xl font-bold">Ballot No. 137</p>
+          </div>
         </div>
 
-        <div className="text-center bg-primary text-white rounded-lg py-3">
-          <p className="text-sm">1st / Best Preference</p>
-          <p className="text-xl font-bold">Ballot No. 137</p>
+        {/* 🔹 Vote / Support / Elect TEXT ONLY */}
+        <div className="flex justify-center gap-8 text-sm font-semibold text-gray-700">
+          <span>Vote</span>
+          <span>Support</span>
+          <span>Elect</span>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 text-sm">
+        {/* 🔹 Contact Section */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
 
           <div className="flex gap-3 border rounded-lg p-3">
             <MapPin className="w-5 h-5 text-primary mt-1" />
@@ -162,10 +180,10 @@ export default function Home() {
               <p>90344-44612</p>
             </div>
           </div>
-
         </div>
 
-        <div className="grid grid-cols-2 gap-4 text-sm">
+        {/* 🔹 Dates */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
           <div className="flex gap-2 border rounded-lg p-3">
             <Calendar className="w-5 h-5 text-primary" />
             <div>
@@ -182,9 +200,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
 
-      
+      </div>
 
     </main>
   );
