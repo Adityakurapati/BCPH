@@ -82,78 +82,78 @@ export function VotingSlip({ voter }: VotingSlipProps) {
             </div>
 
             <div className="w-28 h-28">
-              <svg viewBox="0 0 200 200" className="w-full h-full">
+  <svg viewBox="0 0 200 200" className="w-full h-full">
 
-                {/* Outer Circle */}
-                <circle
-                  cx="100"
-                  cy="100"
-                  r="90"
-                  stroke="#1e3a8a"
-                  strokeWidth="6"
-                  fill="none"
-                />
+    {/* Outer Circle */}
+    <circle
+      cx="100"
+      cy="100"
+      r="90"
+      stroke="#1e3a8a"
+      strokeWidth="6"
+      fill="none"
+    />
 
-                {/* Inner Circle */}
-                <circle
-                  cx="100"
-                  cy="100"
-                  r="70"
-                  stroke="#1e3a8a"
-                  strokeWidth="2"
-                  fill="none"
-                />
+    {/* Inner Circle */}
+    <circle
+      cx="100"
+      cy="100"
+      r="70"
+      stroke="#1e3a8a"
+      strokeWidth="2"
+      fill="none"
+    />
 
-                {/* Top Text Path */}
-                <path
-                  id="topArc"
-                  d="M 30 100 A 70 70 0 0 1 170 100"
-                  fill="none"
-                />
+    {/* Top Arc */}
+    <path
+      id="topArc"
+      d="M 30 100 A 80 80 0 0 1 170 100"
+      fill="none"
+    />
 
-                <text
-                  fontSize="18"
-                  fontWeight="bold"
-                  fill="#1e3a8a"
-                  letterSpacing="3"
-                >
-                  <textPath href="#topArc" startOffset="50%" textAnchor="middle">
-                    BALLOT
-                  </textPath>
-                </text>
+    <text
+      fontSize="16"
+      fontWeight="bold"
+      fill="#1e3a8a"
+      letterSpacing="3"
+    >
+      <textPath href="#topArc" startOffset="50%" textAnchor="middle">
+        BALLOT
+      </textPath>
+    </text>
 
-                {/* Bottom Text Path */}
-                <path
-                  id="bottomArc"
-                  d="M 170 100 A 70 70 0 0 1 30 100"
-                  fill="none"
-                />
+    {/* Bottom Arc (FIXED direction) */}
+    <path
+      id="bottomArc"
+      d="M 30 100 A 80 80 0 0 0 170 100"
+      fill="none"
+    />
 
-                <text
-                  fontSize="18"
-                  fontWeight="bold"
-                  fill="#1e3a8a"
-                  letterSpacing="3"
-                >
-                  <textPath href="#bottomArc" startOffset="50%" textAnchor="middle">
-                    NUMBER
-                  </textPath>
-                </text>
+    <text
+      fontSize="16"
+      fontWeight="bold"
+      fill="#1e3a8a"
+      letterSpacing="3"
+    >
+      <textPath href="#bottomArc" startOffset="50%" textAnchor="middle">
+        NUMBER
+      </textPath>
+    </text>
 
-                {/* Center Number */}
-                <text
-                  x="100"
-                  y="115"
-                  textAnchor="middle"
-                  fontSize="50"
-                  fontWeight="bold"
-                  fill="#dc2626"
-                >
-                  {FIXED_BALLOT_NUMBER}
-                </text>
+    {/* Center Number */}
+    <text
+      x="100"
+      y="115"
+      textAnchor="middle"
+      fontSize="50"
+      fontWeight="bold"
+      fill="#dc2626"
+    >
+      {FIXED_BALLOT_NUMBER}
+    </text>
 
-              </svg>
-            </div>
+  </svg>
+</div>
 
           </div>
         </div>

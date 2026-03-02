@@ -19,7 +19,7 @@ export function CampaignHero() {
         <h1 className="text-lg font-bold">PRIYA LEGHA</h1>
         <p className="text-[11px] text-muted-foreground">Advocate</p>
         <p className="text-[11px] font-semibold">
-          Member – Bar Council Punjab & Haryana
+          Candidate – Bar Council Punjab & Haryana
         </p>
       </div>
 
