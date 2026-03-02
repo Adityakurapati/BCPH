@@ -181,6 +181,50 @@ export function VotingSlip({ voter }: VotingSlipProps) {
         </div>
       </div>
      
+
+     <div className="flex justify-center gap-8 mt-6">
+
+  {/* WhatsApp */}
+  <div className="flex flex-col items-center">
+    <button
+      onClick={handleWhatsAppShare}
+      className="w-12 h-12 rounded-full bg-green-500 hover:bg-green-600 text-white flex items-center justify-center shadow-md transition hover:scale-105"
+    >
+      <MessageCircle size={20} />
+    </button>
+    <span className="text-[11px] text-white mt-1">
+      WhatsApp
+    </span>
+  </div>
+
+  {/* Share */}
+  <div className="flex flex-col items-center">
+    <button
+      onClick={handleShare}
+      className="w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-md transition hover:scale-105"
+    >
+      <Share2 size={20} />
+    </button>
+    <span className="text-[11px] text-white mt-1">
+      Share
+    </span>
+  </div>
+
+  {/* Download */}
+  <div className="flex flex-col items-center">
+    <button
+      onClick={handleDownload}
+      className="w-12 h-12 rounded-full bg-gray-800 hover:bg-black text-white flex items-center justify-center shadow-md transition hover:scale-105"
+    >
+      <Download size={20} />
+    </button>
+    <span className="text-[11px] text-white mt-1">
+      Download
+    </span>
+  </div>
+
+</div>
+
       
 
     </div>
