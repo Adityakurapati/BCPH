@@ -141,7 +141,7 @@ export default function Home() {
             <div className="relative w-38 h-34 rounded-lg overflow-hidden border-2 border-yellow-400 shadow-lg">
               <Image
                 src="/priya_lehga.jpeg"
-                alt="Vaibhav Jain"
+                alt="Priya Legha"
                 fill
                 className="object-auto"
               />
