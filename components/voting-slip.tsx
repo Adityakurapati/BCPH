@@ -14,7 +14,7 @@ const FIXED_BALLOT_NUMBER = "137";
 const ORGANIZATION = "BCPH";
 
 // 👉 Optional: Add number like 919876543210 (without +)
-const WHATSAPP_NUMBER = ""; 
+const WHATSAPP_NUMBER = "";
 
 export function VotingSlip({ voter }: VotingSlipProps) {
   const slipRef = useRef<HTMLDivElement>(null);
@@ -33,40 +33,40 @@ export function VotingSlip({ voter }: VotingSlipProps) {
   };
 
   const handleWhatsAppShare = async () => {
-  if (!slipRef.current) return;
+    if (!slipRef.current) return;
 
-  try {
-    // 1️⃣ Convert HTML to image
-    const dataUrl = await htmlToImage.toPng(slipRef.current, {
-      quality: 1,
-      pixelRatio: 2,
-      backgroundColor: "#ffffff",
-    });
-
-    const blob = await (await fetch(dataUrl)).blob();
-    const file = new File([blob], "VotingSlip.png", {
-      type: "image/png",
-    });
-
-    // 2️⃣ Use Native Share API (THIS opens WhatsApp app properly)
-    if (navigator.share && navigator.canShare({ files: [file] })) {
-      await navigator.share({
-        title: "Voting Slip",
-        text: "Please find your voting slip.",
-        files: [file],
+    try {
+      // 1️⃣ Convert HTML to image
+      const dataUrl = await htmlToImage.toPng(slipRef.current, {
+        quality: 1,
+        pixelRatio: 2,
+        backgroundColor: "#ffffff",
       });
-    } else {
-      // 3️⃣ Fallback for unsupported browsers
-      const link = document.createElement("a");
-      link.href = dataUrl;
-      link.download = "VotingSlip.png";
-      link.click();
-    }
 
-  } catch (error) {
-    console.error("Share failed:", error);
-  }
-};
+      const blob = await (await fetch(dataUrl)).blob();
+      const file = new File([blob], "VotingSlip.png", {
+        type: "image/png",
+      });
+
+      // 2️⃣ Use Native Share API (THIS opens WhatsApp app properly)
+      if (navigator.share && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          title: "Voting Slip",
+          text: "Please find your voting slip at https://bcph.vercel.app",
+          files: [file],
+        });
+      } else {
+        // 3️⃣ Fallback for unsupported browsers
+        const link = document.createElement("a");
+        link.href = dataUrl;
+        link.download = "VotingSlip.png";
+        link.click();
+      }
+
+    } catch (error) {
+      console.error("Share failed:", error);
+    }
+  };
 
   /* ================= NORMAL SHARE ================= */
   const handleShare = async () => {
