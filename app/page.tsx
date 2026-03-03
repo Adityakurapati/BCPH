@@ -138,7 +138,7 @@ export default function Home() {
           {/* LEFT SIDE */}
           <div className="flex items-center gap-4">
             {/* Photo */}
-            <div className="relative w-34 h-34 rounded-lg overflow-hidden border-2 border-yellow-400 shadow-lg">
+            <div className="relative w-38 h-34 rounded-lg overflow-hidden border-2 border-yellow-400 shadow-lg">
               <Image
                 src="/priya_lehga.jpeg"
                 alt="Vaibhav Jain"
@@ -152,7 +152,7 @@ export default function Home() {
               <h1 className="text-2xl font-bold">PRIYA LEGHA</h1>
               <p className="text-sm text-gray-600">Advocate</p>
               <p className="text-sm font-semibold">
-                Member – Bar Council Punjab & Haryana
+                Candidate – Bar Council Punjab & Haryana
               </p>
             </div>
           </div>
