@@ -52,7 +52,7 @@ export function VotingSlip({ voter }: VotingSlipProps) {
       if (navigator.share && navigator.canShare({ files: [file] })) {
         await navigator.share({
           title: "Voting Slip",
-          text: "Please find your voting slip at https://bcph.vercel.app",
+          text: "Please find your voting slip at https://votingslipbcph.in",
           files: [file],
         });
       } else {

@@ -7,21 +7,21 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'BCPH Election - PRIYA LEGHA for Bar Council',
+  title: 'Find Voting Slip - BCPH',
   description: 'Vote for PRIYA LEGHA - Bar Council Punjab & Haryana Election Campaign',
   generator: 'v0.app',
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
+        url: '/bcph.jpeg',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '/bcph.jpeg',
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/icon.svg',
+        url: '/bcph.jpeg',
         type: 'image/svg+xml',
       },
     ],
