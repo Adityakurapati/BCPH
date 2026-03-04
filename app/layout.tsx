@@ -3,37 +3,48 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const _geist = Geist({ subsets: ["latin"] })
+const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: 'Find Voting Slip - BCPH',
   description: 'Vote for PRIYA LEGHA - Bar Council Punjab & Haryana Election Campaign',
   generator: 'v0.app',
+
   icons: {
-    icon: [
+    icon: '/bcph.jpeg',
+    apple: '/apple-icon.png',
+  },
+
+  openGraph: {
+    title: 'Find Voting Slip - BCPH',
+    description: 'Vote for PRIYA LEGHA - Bar Council Punjab & Haryana Election Campaign',
+    url: 'https://votingslipbcph.in',
+    siteName: 'BCPH Voting Slip',
+    images: [
       {
-        url: '/bcph.jpeg',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/bcph.jpeg',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/bcph.jpeg',
-        type: 'image/svg+xml',
+        url: 'https://votingslipbcph.in/bcph.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'BCPH Voting Slip',
       },
     ],
-    apple: '/apple-icon.png',
+    type: 'website',
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Find Voting Slip - BCPH',
+    description: 'Vote for PRIYA LEGHA - Bar Council Punjab & Haryana Election Campaign',
+    images: ['https://votingslipbcph.in/bcph.jpeg'],
   },
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
     <html lang="en">
       <body className="font-sans antialiased">
