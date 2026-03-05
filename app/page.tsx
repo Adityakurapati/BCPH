@@ -54,6 +54,31 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gray-50 flex flex-col items-center px-4 py-4 space-y-6">
 
+ <div className="w-screen max-w-4xl p-6 space-y-6">
+
+        {/* Logo + Ballot */}
+        <div className="grid grid-cols-2 gap-4">
+
+          <div className="relative h-28 rounded-lg overflow-hidden border-2 border-yellow-400 shadow-md">
+            <Image
+              src="/logo.png"
+              alt="Campaign Logo"
+              fill
+              className="object-contain p-3"
+            />
+          </div>
+
+          <div className="bg-primary text-white rounded-lg flex flex-col items-center justify-center h-28 shadow-md">
+            <p className="text-xs">1st / Best Preference</p>
+            <p className="text-lg font-bold">Ballot No. 137</p>
+          </div>
+
+        </div>
+
+        
+
+      </div>
+
       {/* 🔹 SEARCH SECTION */}
       <div className="w-full max-w-4xl bg-white rounded-xl shadow-md p-6">
         <h2 className="text-lg font-semibold text-center mb-4">
@@ -171,44 +196,42 @@ export default function Home() {
           <span>Elect</span>
         </div>
 
-        {/* 🔹 Contact Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+       {/* 🔹 Contact + Dates Section (2 Rows × 2 Columns) */}
+<div className="grid grid-cols-2 gap-4 text-sm">
 
-          <div className="flex gap-3 border rounded-lg p-3">
-            <MapPin className="w-5 h-5 text-primary mt-1" />
-            <div>
-              <p className="font-semibold">Chamber 306</p>
-              <p>District & Session Courts, Bhiwani</p>
-            </div>
-          </div>
+  <div className="flex gap-3 border rounded-lg p-3">
+    <MapPin className="w-5 h-5 text-primary mt-1" />
+    <div>
+      <p className="font-semibold">Chamber 306</p>
+      <p>District & Session Courts, Bhiwani</p>
+    </div>
+  </div>
 
-          <div className="flex gap-3 border rounded-lg p-3">
-            <Phone className="w-5 h-5 text-primary mt-1" />
-            <div>
-              <p className="font-semibold">Contact</p>
-              <p>90344-44612</p>
-            </div>
-          </div>
-        </div>
+  <div className="flex gap-3 border rounded-lg p-3">
+    <Phone className="w-5 h-5 text-primary mt-1" />
+    <div>
+      <p className="font-semibold">Contact</p>
+      <p>90344-44612</p>
+    </div>
+  </div>
 
-        {/* 🔹 Dates */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-          <div className="flex gap-2 border rounded-lg p-3">
-            <Calendar className="w-5 h-5 text-primary" />
-            <div>
-              <p className="font-semibold">17 March</p>
-              <p>High Court</p>
-            </div>
-          </div>
+  <div className="flex gap-2 border rounded-lg p-3">
+    <Calendar className="w-5 h-5 text-primary" />
+    <div>
+      <p className="font-semibold">17 March</p>
+      <p>High Court</p>
+    </div>
+  </div>
 
-          <div className="flex gap-2 border rounded-lg p-3">
-            <Calendar className="w-5 h-5 text-primary" />
-            <div>
-              <p className="font-semibold">18 March</p>
-              <p>District Courts</p>
-            </div>
-          </div>
-        </div>
+  <div className="flex gap-2 border rounded-lg p-3">
+    <Calendar className="w-5 h-5 text-primary" />
+    <div>
+      <p className="font-semibold">18 March</p>
+      <p>District Courts</p>
+    </div>
+  </div>
+
+</div>
 
       </div>
 

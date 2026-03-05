@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   generator: 'v0.app',
 
   icons: {
-    icon: '/bcph.jpeg',
+    icon: '/bcph.png',
     apple: '/apple-icon.png',
   },
 
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: 'BCPH Voting Slip',
     images: [
       {
-        url: 'https://votingslipbcph.in/bcph.jpeg',
+        url: 'https://votingslipbcph.in/bcph.png',
         width: 1200,
         height: 630,
         alt: 'BCPH Voting Slip',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Find Voting Slip - BCPH',
     description: 'Vote for PRIYA LEGHA - Bar Council Punjab & Haryana Election Campaign',
-    images: ['https://votingslipbcph.in/bcph.jpeg'],
+    images: ['https://votingslipbcph.in/bcph.png'],
   },
 }
 
